@@ -8,10 +8,14 @@ project(UnixSocket
 
 set(SOURCES
     src/UnixDataSocket.cc
+    src/UnixServerSocket.cc
+    src/UnixClientConnect.cc
 )
 
 set(PUB_HEADERS
     include/nettools/UnixDataSocket.hh
+    include/nettools/UnixServerSocket.hh
+    include/nettools/UnixClientConnect.hh
 )
 
 add_library(UnixSocketStatic STATIC)

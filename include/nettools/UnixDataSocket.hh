@@ -13,8 +13,13 @@ namespace nettools {
 
             bool read(uint8_t *, size_t);
             bool write(const uint8_t *, size_t);
+            bool write(const char *, size_t);
+            bool write(std::string const& content);
 
             std::shared_ptr<UnixDataSocket> get();
+
+            bool nonblocking() const;
+            void nonblocking(bool);
         private:
             int fd_ = -1;
             bool nonblocking_ = false;
