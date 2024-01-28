@@ -10,6 +10,7 @@ set(SOURCES
     src/UnixDataSocket.cc
     src/UnixServerSocket.cc
     src/UnixClientConnect.cc
+    src/Utils.cc
 )
 
 set(PUB_HEADERS
@@ -18,15 +19,24 @@ set(PUB_HEADERS
     include/nettools/UnixClientConnect.hh
 )
 
+set(PRIV_HEADERS
+    src/Utils.hh
+)
+
 add_library(UnixSocketStatic STATIC)
 target_sources(UnixSocketStatic 
     PRIVATE 
         ${SOURCES}
     PUBLIC
-    FILE_SET pub_headers # public header file set associates the public with the target so that they can be used when building and installing
+        FILE_SET pub_headers # public header file set associates the public with the target so that they can be used when building and installing
         TYPE HEADERS
         BASE_DIRS include # note that this is root of any #include directives
         FILES ${PUB_HEADERS} # here we list all the actual header files
+    PRIVATE
+        FILE_SET priv_headers
+        TYPE HEADERS
+        BASE_DIRS src
+        FILES ${PRIV_HEADERS}
 )
 
 add_library(UnixSocketShared SHARED)
@@ -34,10 +44,15 @@ target_sources(UnixSocketShared
     PRIVATE 
         ${SOURCES}
     PUBLIC
-    FILE_SET pub_headers 
+        FILE_SET pub_headers 
         TYPE HEADERS
         BASE_DIRS include
         FILES ${PUB_HEADERS}
+    PRIVATE
+        FILE_SET priv_headers
+        TYPE HEADERS
+        BASE_DIRS src
+        FILES ${PRIV_HEADERS}
 )
 
 set(package_find_dir share/cmake/Nettools)

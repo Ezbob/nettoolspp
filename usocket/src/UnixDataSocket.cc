@@ -18,7 +18,6 @@ using namespace nettools;
 UnixDataSocket::UnixDataSocket(int fd) : fd_(fd) {}
 
 UnixDataSocket::~UnixDataSocket() {
-    if (fd_ != -1) close(fd_);
 }
 
 bool UnixDataSocket::read(uint8_t *data, size_t length) {
@@ -69,3 +68,17 @@ bool UnixDataSocket::nonblocking() const {
     return nonblocking_;
 }
 
+int UnixDataSocket::fd() const {
+    return fd_;
+}
+
+void UnixDataSocket::close() {
+    if (fd_ != -1) {
+        ::close(fd_);
+        fd_ = -1;
+    }
+}
+
+bool UnixDataSocket::closed() const {
+    return fd_ == -1;
+}

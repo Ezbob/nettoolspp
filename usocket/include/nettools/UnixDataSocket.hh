@@ -20,6 +20,11 @@ namespace nettools {
 
             bool nonblocking() const;
             void nonblocking(bool);
+
+            int fd() const;
+            
+            bool closed() const;
+            void close();
         private:
             int fd_ = -1;
             bool nonblocking_ = false;

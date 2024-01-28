@@ -1,0 +1,4 @@
+/home/anders/Documents/usocket/test_include/build-debug/CMakeFiles/server.dir
+/home/anders/Documents/usocket/test_include/build-debug/CMakeFiles/client.dir
+/home/anders/Documents/usocket/test_include/build-debug/CMakeFiles/edit_cache.dir
+/home/anders/Documents/usocket/test_include/build-debug/CMakeFiles/rebuild_cache.dir

@@ -17,13 +17,14 @@ int main() {
     sigaction(SIGINT, &sa, nullptr);
     sigaction(SIGTERM, &sa, nullptr);
 
-    auto socket = nettools::UnixServerSocket("/tmp/testsock.sock");
+    auto socket = nettools::serverListen("/tmp/testsock.sock");
 
     for (;;) {
-        auto data_socket = socket.accept();
+        auto data_socket = socket->accept();
         if (data_socket) {
             data_socket->write("Hello there!");
         }
+        data_socket->close();
         if (want_to_quit.load()) {
             break;
         }

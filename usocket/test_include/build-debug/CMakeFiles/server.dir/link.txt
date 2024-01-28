@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/server.dir/src/server.cc.o -o server  /home/anders/Documents/usocket/install/lib/libUnixSocketStatic.a 
